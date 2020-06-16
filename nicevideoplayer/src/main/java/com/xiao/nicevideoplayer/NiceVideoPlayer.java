@@ -375,6 +375,7 @@ public class NiceVideoPlayer extends FrameLayout
                     ((IjkMediaPlayer) mMediaPlayer).setOption(4, "packet-buffering", 0L);
                     ((IjkMediaPlayer) mMediaPlayer).setOption(4, "framedrop", 1L);
                     ((IjkMediaPlayer) mMediaPlayer).setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "enable-accurate-seek", 1);
+                    ((IjkMediaPlayer) mMediaPlayer).setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", 1);
                     break;
             }
             mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
