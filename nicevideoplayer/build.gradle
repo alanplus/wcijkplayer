@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.alan.wcijkplayer'
+group = 'com.alan.wcijkplayer'
 
 android {
 
@@ -19,6 +19,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            ndk {
+                abiFilters 'armeabi', 'armeabi-v7a', 'x86'
+            }
         }
     }
 
@@ -32,13 +35,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:28.0.0'
-    api project(path: ':ijkplayer-java')
-    api project(path: ':ijkplayerso')
+    compile project(path: ':ijkplayer-java')
+//    compile project(path: ':ijkplayerso')
 //    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
 //    compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.8'
 //    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'

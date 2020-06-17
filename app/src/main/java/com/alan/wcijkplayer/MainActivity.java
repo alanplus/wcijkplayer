@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         NiceVideoPlayer niceVideoPlayer = findViewById(R.id.nice_player);
-        niceVideoPlayer.setUp("http://192.168.1.90:3000/file/陈慧琳-都是你的错.mkv", null);
+        niceVideoPlayer.setUp("http://192.168.1.91:3000/file/陈慧琳-都是你的错.mkv", null);
         niceVideoPlayer.setController(new NiceVideoPlayerController(this) {
             @Override
             public void setTitle(String title) {
