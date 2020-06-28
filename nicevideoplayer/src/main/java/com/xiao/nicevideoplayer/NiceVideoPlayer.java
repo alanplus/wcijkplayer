@@ -373,7 +373,8 @@ public class NiceVideoPlayer extends FrameLayout
 //                    ((IjkMediaPlayer) mMediaPlayer).setOption(1, "probesize", 10240L);
 //                    ((IjkMediaPlayer) mMediaPlayer).setOption(1, "flush_packets", 1L);
 //                    ((IjkMediaPlayer) mMediaPlayer).setOption(4, "packet-buffering", 0L);
-//                    ((IjkMediaPlayer) mMediaPlayer).setOption(4, "framedrop", 1L);
+                    // 允许丢帧 保持音频与视频同步
+                    ((IjkMediaPlayer) mMediaPlayer).setOption(4, "framedrop", 5);
 //                    ((IjkMediaPlayer) mMediaPlayer).setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "enable-accurate-seek", 1);
                     ((IjkMediaPlayer) mMediaPlayer).setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", 1);
                     break;
