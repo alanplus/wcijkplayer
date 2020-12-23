@@ -417,7 +417,7 @@ public class NiceVideoPlayer extends FrameLayout
         // 设置监听
         mMediaPlayer.setOnPreparedListener(mOnPreparedListener);
         mMediaPlayer.setOnVideoSizeChangedListener(mOnVideoSizeChangedListener);
-        mMediaPlayer.setOnCompletionListener(mOnCompletionListener);
+        mMediaPlayer.setOnCompletionListener(getOnCompletionListener());
         mMediaPlayer.setOnErrorListener(mOnErrorListener);
         mMediaPlayer.setOnInfoListener(mOnInfoListener);
         mMediaPlayer.setOnBufferingUpdateListener(mOnBufferingUpdateListener);
@@ -483,6 +483,21 @@ public class NiceVideoPlayer extends FrameLayout
             LogUtil.d("onVideoSizeChanged ——> width：" + width + "， height：" + height);
         }
     };
+
+    private IMediaPlayer.OnCompletionListener onCompletionListener;
+
+    /**
+     * 解决m3u8 断网时 会回调 OnCompletionListener
+     *
+     * @param onCompletionListener
+     */
+    public void setOnCompletionListener(IMediaPlayer.OnCompletionListener onCompletionListener) {
+        this.onCompletionListener = onCompletionListener;
+    }
+
+    private IMediaPlayer.OnCompletionListener getOnCompletionListener() {
+        return null == onCompletionListener ? mOnCompletionListener : onCompletionListener;
+    }
 
     private IMediaPlayer.OnCompletionListener mOnCompletionListener
             = new IMediaPlayer.OnCompletionListener() {
@@ -743,5 +758,10 @@ public class NiceVideoPlayer extends FrameLayout
 
     public void destroy() {
         mCurrentState = STATE_DESTROY;
+    }
+
+    public void setCurrentState(int mCurrentState) {
+        this.mCurrentState = mCurrentState;
+        mController.onPlayStateChanged(mCurrentState);
     }
 }
