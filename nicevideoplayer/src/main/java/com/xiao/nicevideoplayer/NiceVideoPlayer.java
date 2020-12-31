@@ -71,6 +71,7 @@ public class NiceVideoPlayer extends FrameLayout
      **/
     public static final int STATE_DESTROY = 8;
 
+
     /**
      * 普通模式
      **/
@@ -762,6 +763,13 @@ public class NiceVideoPlayer extends FrameLayout
 
     public void setCurrentState(int mCurrentState) {
         this.mCurrentState = mCurrentState;
-        mController.onPlayStateChanged(mCurrentState);
+        if (null != mContainer) {
+            mController.onPlayStateChanged(mCurrentState);
+        }
+
+    }
+
+    public void onPlayerChangedListener() {
+        setCurrentState(STATE_IDLE);
     }
 }
