@@ -772,4 +772,8 @@ public class NiceVideoPlayer extends FrameLayout
     public void onPlayerChangedListener() {
         setCurrentState(STATE_IDLE);
     }
+
+    public IMediaPlayer getMediaPlayer(){
+        return mMediaPlayer;
+    }
 }
