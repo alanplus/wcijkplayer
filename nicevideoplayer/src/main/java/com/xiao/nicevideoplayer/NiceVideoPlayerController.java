@@ -70,7 +70,9 @@ public abstract class NiceVideoPlayerController
      * 设置总时长.
      */
     public abstract void setLenght(long length);
+
     public abstract void setLenght(String length);
+
     /**
      * 当播放器的播放状态发生变化，在此方法中国你更新不同的播放状态的UI
      *
@@ -150,9 +152,10 @@ public abstract class NiceVideoPlayerController
     protected abstract void updateProgress();
 
     //播放到最后一行，结束后返回第一行
-    public void resetList(){
+    public void resetList() {
         updateProgress();
     }
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         // 只有全屏的时候才能拖动位置、亮度、声音
@@ -238,9 +241,7 @@ public abstract class NiceVideoPlayerController
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 if (mNeedChangePosition) {
-                    mNiceVideoPlayer.seekTo(mNewPosition);
-                    hideChangePosition();
-                    startUpdateProgressTimer();
+                    changePositionOnActionUp();
                     return true;
                 }
                 if (mNeedChangeBrightness) {
@@ -254,6 +255,12 @@ public abstract class NiceVideoPlayerController
                 break;
         }
         return false;
+    }
+
+    protected void changePositionOnActionUp() {
+        mNiceVideoPlayer.seekTo(mNewPosition);
+        hideChangePosition();
+        startUpdateProgressTimer();
     }
 
     /**
