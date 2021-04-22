@@ -747,6 +747,33 @@ public class NiceVideoPlayer extends FrameLayout
         Runtime.getRuntime().gc();
     }
 
+    @Override
+    public void releaseKeepDirection() {
+        // 保存播放位置
+        if (isPlaying() || isBufferingPlaying() || isBufferingPaused() || isPaused()) {
+            NiceUtil.savePlayPosition(mContext, mUrl, getCurrentPosition());
+        } else if (isCompleted()) {
+            NiceUtil.savePlayPosition(mContext, mUrl, 0);
+        }
+//        // 退出全屏或小窗口
+//        if (isFullScreen()) {
+//            exitFullScreen();
+//        }
+        if (isTinyWindow()) {
+            exitTinyWindow();
+        }
+        mCurrentMode = MODE_NORMAL;
+
+        // 释放播放器
+        releasePlayer();
+
+        // 恢复控制器
+        if (mController != null) {
+            mController.reset();
+        }
+        Runtime.getRuntime().gc();
+    }
+
     private OnReTryListener mOnReTryListener;
 
     public void setOnReTryListener(OnReTryListener listener) {
