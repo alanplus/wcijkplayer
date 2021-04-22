@@ -762,7 +762,8 @@ public class NiceVideoPlayer extends FrameLayout
         if (isTinyWindow()) {
             exitTinyWindow();
         }
-        mCurrentMode = MODE_NORMAL;
+
+//        mCurrentMode = MODE_NORMAL;
 
         // 释放播放器
         releasePlayer();
