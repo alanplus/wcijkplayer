@@ -78,6 +78,7 @@ public interface INiceVideoPlayer {
     boolean isPaused();
     boolean isError();
     boolean isCompleted();
+    boolean isDestroy();
 
     /*********************************
      * 以下3个方法是播放器的模式

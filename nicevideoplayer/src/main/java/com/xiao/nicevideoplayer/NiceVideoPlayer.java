@@ -34,6 +34,7 @@ public class NiceVideoPlayer extends FrameLayout
      **/
     public static final int STATE_ERROR = -1;
     /**
+     * 撒打算大飒飒的阿斯顿
      * 播放未开始
      **/
     public static final int STATE_IDLE = 0;
@@ -289,6 +290,11 @@ public class NiceVideoPlayer extends FrameLayout
     @Override
     public boolean isCompleted() {
         return mCurrentState == STATE_COMPLETED;
+    }
+
+    @Override
+    public boolean isDestroy() {
+        return mCurrentState == STATE_DESTROY;
     }
 
     @Override
@@ -801,7 +807,7 @@ public class NiceVideoPlayer extends FrameLayout
         setCurrentState(STATE_IDLE);
     }
 
-    public IMediaPlayer getMediaPlayer(){
+    public IMediaPlayer getMediaPlayer() {
         return mMediaPlayer;
     }
 }
