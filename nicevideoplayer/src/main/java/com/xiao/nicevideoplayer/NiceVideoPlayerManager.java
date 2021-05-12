@@ -26,12 +26,16 @@ public class NiceVideoPlayerManager {
 
     public void setCurrentNiceVideoPlayer(NiceVideoPlayer videoPlayer) {
         if (mVideoPlayer != videoPlayer) {
-            if(null!=mVideoPlayer){
+            if (null != mVideoPlayer) {
                 mVideoPlayer.onPlayerChangedListener();
             }
             releaseNiceVideoPlayer();
             mVideoPlayer = videoPlayer;
         }
+    }
+
+    public void releasePlayer() {
+        mVideoPlayer = null;
     }
 
     public void suspendNiceVideoPlayer() {
